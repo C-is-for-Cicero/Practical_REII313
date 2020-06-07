@@ -23,7 +23,7 @@ public:
     vector<double> xb;//basis vector
     vector<double> xn;//non basis vector
     vector<vector<double>> e;
-    vector<vector<double>> eta;//Eta File
+    vector<vector<double>> eta;//Eta matrix
 
 
     Matrix(){
@@ -47,6 +47,9 @@ public:
           xn(c),
           e(r, vector<double>(r)),
           eta(MAXITER, vector<double>(r + 1)){}
+
+
+
 
 };
 

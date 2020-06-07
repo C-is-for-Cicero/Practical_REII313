@@ -15,6 +15,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_Num_Vars_SpinBox_valueChanged(int arg1);
+
+    void on_Num_Constraints_SpinBox_valueChanged(int arg1);
+
+    void on_Input_data_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
