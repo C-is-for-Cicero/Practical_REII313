@@ -32,8 +32,7 @@ void MainWindow::on_Num_Constraints_SpinBox_valueChanged(int arg1)
 {
     num_cons=arg1;
     ui->A_Matrix->setRowCount(arg1);
-    ui->b_vector->setRowCount(arg1);
-    ui->b_vector->setColumnCount(1);
+
 
 }
 
@@ -47,9 +46,17 @@ void MainWindow::on_Input_data_clicked()
     }
 
     for(unsigned int i=0;i<mat.cols;i++){
-        ui->test->setText(QString::number( mat.objective_function[i] ));
-        //label->setText( QString::number( value ) );
+        val=ui->Objective_Function->item(0,i)->text().toDouble();
+        mat.setObjective(i,val);
     }
 
+    for(unsigned int i=0;i<mat.rows;i++){
+        for (unsigned int j=0;j<mat.cols;j++){
+            val = ui->A_Matrix->item(i,j)->text().toDouble();
+            mat.setConstraintsMatrix(i,j,val) ;
+        }
+    }
+
+    //ui->test->setText(QString::number( mat.a[0][1] ));
 
 }

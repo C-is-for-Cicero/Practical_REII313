@@ -2,7 +2,7 @@
 #define MATRIX_H
 #include <vector>
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 #define MAXITER 100
@@ -48,7 +48,7 @@ public:
           e(r, vector<double>(r)),
           eta(MAXITER, vector<double>(r + 1)){}
 
-    void setObjective(int j,double val){
+    void setObjective(size_t j,double val){
 
             //if j < number of vars get cost equation values from user
             //put J+1 values into an xn array that represents x1,x2,x3....xn, these are the variables excluding slack vars
@@ -64,7 +64,92 @@ public:
 
     }
 
+    void setConstraintsMatrix(int i,int j, double val){
 
+                if(j != cols)
+                    a[j][i]=val;
+                else
+                    b[i]=val;
+
+            //adding of slack variable
+            a[i + cols][i] = 1;
+            ab[i][i] = 1;
+
+        b_basis = b;
+    }
+    //determines entering variable regarding the objective function
+    int detEnter(vector<double> cbasis) {
+        int res = -1;
+        double largest = 0;
+
+        for (size_t c = 0; c < cbasis.size(); c++) {
+            if (cbasis[c] > largest) {
+                largest = cbasis[c];
+                res = c;
+            }
+        }
+
+        return res;
+    }
+    double determVar(int num, vector<double> xb, vector<double> xn, vector<double> bbasis) {
+
+        for (size_t i = 0; i < xn.size(); i++) {
+            if (xn[i] == num)
+                return 0;
+        }
+        for (size_t j = 0; j < xb.size(); j++) {
+            if (xb[j] == num) {
+                if (abs(bbasis[j]) > 0.00001) {
+                    return bbasis[j];
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    double vectorMultiplication(vector<double> a, vector<double> b) {
+        double res = 0;
+        for (size_t h = 0; h < b.size(); h++) {
+            res += a[h]*b[h];
+        }
+
+        return res;
+    }
+
+    int leavingRatio(vector<double> b,vector<double> abasis){
+        bool first = true;
+        int res = -1;
+        double smallest = 0;
+        double ratio;
+
+
+        for (size_t j = 0; j < b.size(); j++) {
+            if (abasis[j] > 0) {
+                ratio = b[j] / abasis[j];
+
+
+                if (ratio < smallest || first) {
+                    first = false;
+                    res = j;
+                    smallest = ratio;
+                }
+            }
+        }
+
+
+        return res;
+    }
+
+    string Simplex(){
+        string result;
+
+
+        return result;
+    }
 
 
 };
