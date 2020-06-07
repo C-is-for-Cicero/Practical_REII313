@@ -142,6 +142,19 @@
      <string>Optimise Using Simplex</string>
     </property>
    </widget>
+   <widget class="QLabel" name="test">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>30</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

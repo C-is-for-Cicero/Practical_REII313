@@ -48,6 +48,22 @@ public:
           e(r, vector<double>(r)),
           eta(MAXITER, vector<double>(r + 1)){}
 
+    void setObjective(int j,double val){
+
+            //if j < number of vars get cost equation values from user
+            //put J+1 values into an xn array that represents x1,x2,x3....xn, these are the variables excluding slack vars
+            if (j < cols) {
+                objective_function[j]=val;
+                objective_function_basis[j] = objective_function[j];
+                xn[j] = j + 1;
+            }
+            //if j=n or greater put J+1 values into xb array thaat represents the slack variables vector xn,xn+1,xn+2......xm
+            else {
+                xb[j - cols] = j + 1;
+            }
+
+    }
+
 
 
 
