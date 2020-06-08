@@ -74,13 +74,21 @@ void MainWindow::on_Input_data_clicked()
         mat.setObjective(i,val);
     }
 
-    for(unsigned int i=0;i<mat.rows;i++){
-        for (unsigned int j=0;j<mat.cols;j++){
+    for(int i=0;i<ui->A_Matrix->rowCount();i++){
+        for (int j=0;j<ui->A_Matrix->columnCount();j++){
             val = ui->A_Matrix->item(i,j)->text().toDouble();
-            mat.setConstraintsMatrix(i,j,val) ;
+            mat.setConstraintsMatrix(j,i,val) ;
         }
     }
 
-    //ui->test->setText(QString::number( mat.a[3][2] ));
+    ui->test->setText(QString::number( mat.a[3][2] ));
 
+}
+
+void MainWindow::on_Optimise_clicked()
+{
+    string s;
+    s=mat.Simplex_Solve();
+    QString qstr = QString::fromStdString(s);
+    ui->test->setText(qstr);
 }

@@ -22,6 +22,8 @@ private slots:
 
     void on_Input_data_clicked();
 
+    void on_Optimise_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
