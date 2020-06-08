@@ -23,9 +23,33 @@ MainWindow::~MainWindow()
 void MainWindow::on_Num_Vars_SpinBox_valueChanged(int arg1)
 {
     num_vars=arg1;
-    ui->A_Matrix->setColumnCount(arg1);
+    ui->A_Matrix->setColumnCount(arg1+1);
     ui->Objective_Function->setColumnCount(arg1);
     ui->Objective_Function->setRowCount(1);
+
+    QTableWidgetItem *header1 = new QTableWidgetItem();
+
+    header1->setText("b");
+
+    for(int i=0;i<(ui->Objective_Function->columnCount());++i){
+            ui->Objective_Function->setHorizontalHeaderItem(i, new QTableWidgetItem);
+            Q_ASSUME(ui->Objective_Function->model()->setHeaderData(i,Qt::Horizontal,QStringLiteral("X_%1").arg(i+1)));
+    }
+
+    for(int i=0;i<(ui->A_Matrix->columnCount()-1);++i){
+            ui->A_Matrix->setHorizontalHeaderItem(i, new QTableWidgetItem);
+            Q_ASSUME(ui->A_Matrix->model()->setHeaderData(i,Qt::Horizontal,QStringLiteral("X_%1").arg(i+1)));
+    }
+
+    ui->A_Matrix->setHorizontalHeaderItem(ui->A_Matrix->columnCount()-1, header1);
+
+//    for(int i=0;i<ui->A_Matrix->columnCount();i++){
+//        if(i==ui->A_Matrix->columnCount()-1){
+//            ui->A_Matrix->setHorizontalHeaderItem(i,header1);
+//            break;
+//        }
+//        ui->A_Matrix->setHorizontalHeaderItem(i,header2);
+//    }
 }
 
 void MainWindow::on_Num_Constraints_SpinBox_valueChanged(int arg1)
@@ -57,6 +81,6 @@ void MainWindow::on_Input_data_clicked()
         }
     }
 
-    //ui->test->setText(QString::number( mat.a[0][1] ));
+    //ui->test->setText(QString::number( mat.a[3][2] ));
 
 }

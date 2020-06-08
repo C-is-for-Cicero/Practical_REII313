@@ -65,7 +65,7 @@ public:
     }
 
     void setConstraintsMatrix(int i,int j, double val){
-
+                //rows and cols are switched to make extraction easier
                 if(j != cols)
                     a[j][i]=val;
                 else
@@ -144,7 +144,7 @@ public:
         return res;
     }
 
-    string Simplex(){
+    string Simplex_Solve(){
         string result;
 
 
