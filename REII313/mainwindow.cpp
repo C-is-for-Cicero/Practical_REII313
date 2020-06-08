@@ -64,24 +64,24 @@ void MainWindow::on_Input_data_clicked()
 {
     mat=Matrix(num_cons,num_vars);
     double val;
-    for(unsigned int i=0;i<mat.cols;i++){
-        val=ui->Objective_Function->item(0,i)->text().toDouble();
-        mat.setObjective(i,val);
-    }
 
     for(unsigned int i=0;i<mat.cols;i++){
         val=ui->Objective_Function->item(0,i)->text().toDouble();
         mat.setObjective(i,val);
     }
 
-    for(int i=0;i<ui->A_Matrix->rowCount();i++){
-        for (int j=0;j<ui->A_Matrix->columnCount();j++){
+    for(unsigned int i = mat.cols;i<mat.rplusc;i++){
+        mat.setObjective(i,val);
+    }
+
+    for(int i=0;i<mat.rows;i++){
+        for (int j=0;j<(mat.cols+1);j++){
             val = ui->A_Matrix->item(i,j)->text().toDouble();
-            mat.setConstraintsMatrix(j,i,val) ;
+            mat.setConstraintsMatrix(i,j,val) ;
         }
     }
 
-    ui->test->setText(QString::number( mat.a[3][2] ));
+    ui->test->setText(QString::number( mat.xb[0] ));
 
 }
 

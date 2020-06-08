@@ -50,6 +50,8 @@ public:
 
     void setObjective(size_t j,double val){
 
+
+
             //if j < number of vars get cost equation values from user
             //put J+1 values into an xn array that represents x1,x2,x3....xn, these are the variables excluding slack vars
             if (j < cols) {
@@ -78,13 +80,13 @@ public:
         b_basis = b;
     }
     //determines entering variable regarding the objective function
-    int detEnter(vector<double> cbasis) {
+    int detEnter(vector<double> objfunctbasis) {
         int res = -1;
         double largest = 0;
 
-        for (size_t c = 0; c < cbasis.size(); c++) {
-            if (cbasis[c] > largest) {
-                largest = cbasis[c];
+        for (size_t c = 0; c < objfunctbasis.size(); c++) {
+            if (objfunctbasis[c] > largest) {
+                largest = objfunctbasis[c];
                 res = c;
             }
         }
@@ -143,6 +145,8 @@ public:
 
         return res;
     }
+
+
 
     string Simplex_Solve(){
         string result;
