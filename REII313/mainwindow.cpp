@@ -66,17 +66,17 @@ void MainWindow::on_Input_data_clicked()
     mat=Simplex(num_cons,num_vars);
     double val;
 
-    for(unsigned int i=0;i<mat.cols;i++){
+    for(unsigned int i=0;i<mat.getCols();i++){
         val=ui->Objective_Function->item(0,i)->text().toDouble();
         mat.setObjective(i,val);
     }
 
-    for(unsigned int i = mat.cols;i<mat.rplusc;i++){
+    for(unsigned int i = mat.getCols();i<(mat.getRows()+mat.getCols());i++){
         mat.setObjective(i,val);
     }
 
-    for(int i=0;i<mat.rows;i++){
-        for (int j=0;j<(mat.cols+1);j++){
+    for(int i=0;i<mat.getRows();i++){
+        for (int j=0;j<(mat.getCols()+1);j++){
             val = ui->A_Matrix->item(i,j)->text().toDouble();
             mat.setConstraintsMatrix(i,j,val) ;
         }

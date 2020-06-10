@@ -6,7 +6,7 @@
 using namespace std;
 
 class Matrix{
-public:
+protected:
 
     size_t rows;//number of constraint equations
     size_t cols;//number of variables
@@ -21,7 +21,7 @@ public:
     vector<double> y;//objective function
     vector<double> xb;//basis vector
     vector<double> xn;//non basis vector
-
+public:
     Matrix(){
 
     }
@@ -41,6 +41,20 @@ public:
           y(r),
           xb(r),
           xn(c){}
+
+    int getRows(){
+
+        int r = this->rows;
+
+        return r;
+    }
+
+    int getCols(){
+
+        int c = this->cols;
+
+        return c;
+    }
 
     void setObjective(size_t j,double val){
 
