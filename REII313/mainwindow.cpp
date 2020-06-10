@@ -82,7 +82,7 @@ void MainWindow::on_Input_data_clicked()
         }
     }
 
-    ui->test->setText(QString::number( mat.xb[0] ));
+    ui->test->setText("Inputed Data has been recorded!");
 
 }
 
