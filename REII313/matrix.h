@@ -44,8 +44,6 @@ public:
 
     void setObjective(size_t j,double val){
 
-
-
             //if j < number of vars get cost equation values from user
             //put J+1 values into an xn array that represents x1,x2,x3....xn, these are the variables excluding slack vars
             if (j < cols) {
@@ -73,10 +71,6 @@ public:
 
         b_basis = b;
     }
-
-
-
-
 
 };
 

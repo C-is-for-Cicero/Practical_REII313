@@ -199,6 +199,7 @@ public:
                      b_basis[i] = 0;
                  }
                  if (b_basis[i] < 0) { // Sign constraints
+                     result="Linear program is not feasible";
                      finished = true;
                      break;
                  }
