@@ -1,11 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "matrix.h"
+#include "simplex.h"
+
 
 int num_vars;
 int num_cons;
 
-Matrix mat;
+Simplex mat;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -62,7 +63,7 @@ void MainWindow::on_Num_Constraints_SpinBox_valueChanged(int arg1)
 
 void MainWindow::on_Input_data_clicked()
 {
-    mat=Matrix(num_cons,num_vars);
+    mat=Simplex(num_cons,num_vars);
     double val;
 
     for(unsigned int i=0;i<mat.cols;i++){

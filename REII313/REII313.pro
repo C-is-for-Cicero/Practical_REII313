@@ -21,7 +21,8 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
-    matrix.h
+    matrix.h \
+    simplex.h
 
 FORMS += \
     mainwindow.ui
