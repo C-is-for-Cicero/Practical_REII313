@@ -9,7 +9,6 @@ using namespace std;
 
 class Simplex:public Matrix{
 public:
-    vector<vector<double>> e;
     vector<vector<double>> eta;
 
     Simplex(){
@@ -18,7 +17,6 @@ public:
 
     Simplex(size_t r,size_t c)
         : Matrix(r,c),
-          e(r, vector<double>(r)),
           eta(MAXITER, vector<double>(r + 1)){}
 
     int Determine_Enter(vector<double> objfunctbasis) {

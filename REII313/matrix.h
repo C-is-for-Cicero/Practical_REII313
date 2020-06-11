@@ -15,7 +15,6 @@ protected:
     vector<double> objective_function_basis;//basis of obj function
     vector<vector <double> > a;//constraints matrix
     vector<double> abasis;//basis of constraints matrix excluding b
-    vector<vector <double> > ab;//ab matrix
     vector<double> b;//b vactor
     vector<double> b_basis;//basis of b
     vector<double> y;//objective function
@@ -35,7 +34,6 @@ public:
           objective_function_basis(c),
           a(r+c, vector<double>(r)),
           abasis(r),
-          ab(r, vector<double>(r)),
           b(r),
           b_basis(r),
           y(r),
@@ -81,7 +79,7 @@ public:
 
             //adding of slack variable
             a[i + cols][i] = 1;
-            ab[i][i] = 1;
+
 
         b_basis = b;
     }
